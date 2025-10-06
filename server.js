@@ -1,6 +1,8 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import cors from "cors";
+app.use(cors());
 
 const app = express();
 const PORT = 5000;
