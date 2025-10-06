@@ -26,7 +26,7 @@ export default function Login({ rememberMe, setRememberMe }) {
   const onSubmit = async (data) => {
     try {
       const res = await fetch(
-        `https://ab12cd34.ngrok.io/users?email=${data.email}`
+        `http://localhost:5000/users?email=${data.email}`
       );
       const users = await res.json();
 
