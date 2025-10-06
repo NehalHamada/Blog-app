@@ -49,7 +49,7 @@ export default function AddPost({
     };
 
     try {
-      const response = await fetch("http://localhost:5000/posts", {
+      const response = await fetch("https://ab12cd34.ngrok.io/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPost),
