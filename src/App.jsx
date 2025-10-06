@@ -37,7 +37,7 @@ function App() {
     // users
     const fetchedUsers = async () => {
       try {
-        const response = await fetch("https://abc123.ngrok.io/users");
+        const response = await fetch("http://localhost:5000/users");
         const result = await response.json();
         setUsers(result);
       } catch (error) {
@@ -48,7 +48,7 @@ function App() {
     // posts
     const fetchedPosts = async () => {
       try {
-        const response = await fetch("https://abc123.ngrok.io/posts");
+        const response = await fetch("http://localhost:5000/posts");
         const result = await response.json();
         setPosts(result);
       } catch (error) {
@@ -91,7 +91,7 @@ function App() {
       }
       const updatedPosts = posts.filter((post) => post.id !== id);
       setPosts(updatedPosts);
-      const response = await fetch(`https://abc123.ngrok.io/posts/${id}`, {
+      const response = await fetch(`http://localhost:5000/posts/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -131,7 +131,7 @@ function App() {
       console.log("Updating Post:", updatePost);
 
       const response = await fetch(
-        `https://abc123.ngrok.io/posts/${editingPost.id}`,
+        `http://localhost:5000/posts/${editingPost.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
