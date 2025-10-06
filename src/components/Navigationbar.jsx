@@ -14,6 +14,7 @@ export default function Navigationbar({
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
+    setShowMenu(null);
     navigate("/");
   };
   return (
