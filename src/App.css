@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+input,
+.addbut,
+textarea {
+  background-color: #28949e;
+  color: #fff;
+  outline: 1px solid #28949e;
+}
+
+.edit-btn,
+.add-post,
+.login-btn,
+.regist-btn {
+  background-color: #28949e;
+  color: #fff;
+}
+
+input[type="checkbox"] {
+  background-color: #fff !important;
+  border: 1px solid #28949e !important;
+}
+
+.post-title,
+.addpost-head {
+  color: #28949e;
+}
