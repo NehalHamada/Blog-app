@@ -44,7 +44,7 @@ export default function Regist({
     try {
       // 1) check if email already exists
       const checkRes = await fetch(
-        `http://localhost:5000/users?email=${data.email}`
+        `https://abc123.ngrok.io/users?email=${data.email}`
       );
       const existingUsers = await checkRes.json();
 
@@ -54,7 +54,7 @@ export default function Regist({
       }
 
       // 2) get all users to calculate new numeric id
-      const allRes = await fetch("http://localhost:5000/users");
+      const allRes = await fetch("https://abc123.ngrok.io/users");
       const users = await allRes.json();
 
       const newId =
@@ -70,7 +70,7 @@ export default function Regist({
       };
 
       // 4) POST request to json-server
-      const res = await fetch("http://localhost:5000/users", {
+      const res = await fetch("https://abc123.ngrok.io/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
