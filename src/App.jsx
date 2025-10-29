@@ -110,7 +110,7 @@ function App() {
   const handleUpdate = (post) => {
     setEditingPost(post);
     setEditTitle(post.title);
-    setEditDescription(post.body); // ✅ use body because Home.jsx uses post.body
+    setEditDescription(post.body); 
     setEditImageUrl(post.image);
   };
 
