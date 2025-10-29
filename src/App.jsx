@@ -37,7 +37,7 @@ function App() {
     // users
     const fetchedUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("http://localhost:5001/users");
         const result = await response.json();
         setUsers(result);
       } catch (error) {
@@ -48,7 +48,7 @@ function App() {
     // posts
     const fetchedPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/posts");
+        const response = await fetch("http://localhost:5001/posts");
         const result = await response.json();
         setPosts(result);
       } catch (error) {
@@ -110,7 +110,7 @@ function App() {
   const handleUpdate = (post) => {
     setEditingPost(post);
     setEditTitle(post.title);
-    setEditDescription(post.body); 
+    setEditDescription(post.body);
     setEditImageUrl(post.image);
   };
 
@@ -124,7 +124,7 @@ function App() {
       const updatePost = {
         ...editingPost,
         title: editTitle,
-        body: editDescription, 
+        body: editDescription,
         image: editImageUrl,
       };
 
