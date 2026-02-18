@@ -34,7 +34,7 @@ export default function Regist({
   const BASE_URL =
     window.location.hostname === "localhost"
       ? "http://localhost:5001"
-      : "https://6995aa14aecb8f7aea4a03df--sage-moonbeam-4bbfcc.netlify.app/";
+      : "blog-app-lake-delta.vercel.app";
   const navigate = useNavigate();
   const {
     register,
