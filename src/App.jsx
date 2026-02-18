@@ -33,11 +33,16 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "https://6995aa14aecb8f7aea4a03df--sage-moonbeam-4bbfcc.netlify.app/";
+
   useEffect(() => {
     // users
     const fetchedUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5001/users");
+        const response = await fetch(`${BASE_URL}/users`);
         const result = await response.json();
         setUsers(result);
       } catch (error) {
@@ -48,7 +53,7 @@ function App() {
     // posts
     const fetchedPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5001/posts");
+        const response = await fetch(`${BASE_URL}/posts`);
         const result = await response.json();
         setPosts(result);
       } catch (error) {
@@ -62,7 +67,7 @@ function App() {
     }
     fetchedUsers();
     fetchedPosts();
-  }, []);
+  }, [BASE_URL]);
 
   useEffect(() => {
     const storeUser = localStorage.getItem("user");
@@ -80,7 +85,7 @@ function App() {
   // delete posts
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this post?"
+      "Are you sure you want to delete this post?",
     );
     if (!confirmed) return;
     try {
@@ -136,13 +141,13 @@ function App() {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatePost),
-        }
+        },
       );
 
       if (!response.ok) throw new Error("Failed to update");
 
       setPosts((prevPosts) =>
-        prevPosts.map((p) => (p.id === editingPost.id ? updatePost : p))
+        prevPosts.map((p) => (p.id === editingPost.id ? updatePost : p)),
       );
 
       setEditingPost(null);

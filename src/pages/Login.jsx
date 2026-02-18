@@ -15,6 +15,10 @@ const schema = Yup.object().shape({
 });
 
 export default function Login({ rememberMe, setRememberMe }) {
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "https://6995aa14aecb8f7aea4a03df--sage-moonbeam-4bbfcc.netlify.app/";
   const navigate = useNavigate();
   const {
     register,
@@ -25,9 +29,7 @@ export default function Login({ rememberMe, setRememberMe }) {
   // login handler
   const onSubmit = async (data) => {
     try {
-      const res = await fetch(
-        `http://localhost:5001/users?email=${data.email}`
-      );
+      const res = await fetch(`${BASE_URL}/users?email=${data.email}`);
       const users = await res.json();
 
       if (users.length === 0) {
@@ -43,7 +45,6 @@ export default function Login({ rememberMe, setRememberMe }) {
       }
       localStorage.setItem("user", JSON.stringify(user));
       toast.success("Login successful!");
-
 
       navigate("/home");
     } catch (error) {

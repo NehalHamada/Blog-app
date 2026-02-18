@@ -17,7 +17,7 @@ const schema = Yup.object().shape({
     .required("Password is required")
     .matches(
       /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{6,}$/,
-      "Password must contain at least 1 uppercase, 1 number, and 1 special character"
+      "Password must contain at least 1 uppercase, 1 number, and 1 special character",
     ),
   conuserpass: Yup.string()
     .required("Confirm Password is required")
@@ -31,6 +31,10 @@ export default function Regist({
   fileInputRef,
   triggerFileInput,
 }) {
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "https://6995aa14aecb8f7aea4a03df--sage-moonbeam-4bbfcc.netlify.app/";
   const navigate = useNavigate();
   const {
     register,
@@ -43,9 +47,7 @@ export default function Regist({
   const onSubmit = async (data) => {
     try {
       // 1) check if email already exists
-      const checkRes = await fetch(
-        `http://localhost:5001/users?email=${data.email}`
-      );
+      const checkRes = await fetch(`${BASE_URL}/users?email=${data.email}`);
       const existingUsers = await checkRes.json();
 
       if (existingUsers.length > 0) {
@@ -54,7 +56,7 @@ export default function Regist({
       }
 
       // 2) get all users to calculate new numeric id
-      const allRes = await fetch("http://localhost:5001/users");
+      const allRes = await fetch(`${BASE_URL}/users`);
       const users = await allRes.json();
 
       const newId =
@@ -70,7 +72,7 @@ export default function Regist({
       };
 
       // 4) POST request to json-server
-      const res = await fetch("http://localhost:5001/users", {
+      const res = await fetch(`${BASE_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),

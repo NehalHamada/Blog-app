@@ -47,9 +47,12 @@ export default function AddPost({
       image: imageUrl, // ✅ now base64 image from upload
       author: user.name,
     };
-
+    const BASE_URL =
+      window.location.hostname === "localhost"
+        ? "http://localhost:5001"
+        : "https://6995aa14aecb8f7aea4a03df--sage-moonbeam-4bbfcc.netlify.app/";
     try {
-      const response = await fetch("http://localhost:5001/posts", {
+      const response = await fetch(`${BASE_URL}/posts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPost),
